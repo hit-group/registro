@@ -1,8 +1,14 @@
+<?php
+	session_start();  //Avvia la sessione
+	//Se l'utente non è utenticato rimanda alla pagina di login
+	if(!isset($_SESSION["username"])){
+		header("Location: /login.php");
+		die();
+	}
+?>
+
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
+
 <html>
 <head>
   <meta charset="utf-8">
@@ -58,7 +64,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>HIT</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -83,7 +89,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="img/user_logo.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Mario Rossi</span>
+              <span class="hidden-xs"><?php echo $_SESSION["nome"];echo " ";echo $_SESSION["cognome"]; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -91,15 +97,15 @@ desired effect
                 <img src="img/user_logo.png" class="img-circle" alt="User Image">
 
                 <p>
-                  Mario Rossi - III CAT A
-                  <small>ITET C.A. Pilati</small>
+                  <?php echo $_SESSION["nome"]; echo " "; echo $_SESSION["cognome"]; ?> - <?php echo $_SESSION["classe"]; ?>
+                  <small><?php echo $_SESSION["scuola"]; ?></small>
                 </p>
               </li>
 
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Esci</a>
+                  <a href="include/session/stop.php" class="btn btn-default btn-flat">Esci</a>
                 </div>
               </li>
 
@@ -123,12 +129,12 @@ desired effect
           <img src="img/user_logo.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Mario Rossi</p>
+          <p><?php echo $_SESSION["nome"];echo " ";echo $_SESSION["cognome"]; ?></p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> <?php echo $_SESSION["username"]; ?></a>
         </div>
       </div>
-      
+
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">MENU</li>
@@ -139,6 +145,8 @@ desired effect
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
+
+
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
