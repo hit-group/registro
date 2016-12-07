@@ -1,5 +1,6 @@
 <?php
 	session_start();  //Avvia la sessione
+	include_once 'include/nav/pagemanager.php';
 	//Se l'utente non è utenticato rimanda alla pagina di login
 	if(!isset($_SESSION["username"])){
 		header("Location: /login.php");
@@ -20,8 +21,12 @@
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -37,26 +42,6 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -89,7 +74,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="img/user_logo.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php echo $_SESSION["nome"];echo " ";echo $_SESSION["cognome"]; ?></span>
+              <span class="hidden-xs"><?php echo $_SESSION["nomecompleto"]; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -97,7 +82,7 @@ desired effect
                 <img src="img/user_logo.png" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $_SESSION["nome"]; echo " "; echo $_SESSION["cognome"]; ?> - <?php echo $_SESSION["classe"]; ?>
+                  <?php echo $_SESSION["nomecompleto"];?> - <?php echo $_SESSION["classe"]; ?>
                   <small><?php echo $_SESSION["scuola"]; ?></small>
                 </p>
               </li>
@@ -117,37 +102,9 @@ desired effect
       </div>
     </nav>
   </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
 
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="img/user_logo.png" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><?php echo $_SESSION["nome"];echo " ";echo $_SESSION["cognome"]; ?></p>
-          <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> <?php echo $_SESSION["username"]; ?></a>
-        </div>
-      </div>
-
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu">
-        <li class="header">MENU</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Home</span></a></li>
-
-      </ul>
-      <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-
-
-  </aside>
+	<!-- Aggiunge il menu laterale -->
+	<?php include 'include/nav/sidebar.php' ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -169,6 +126,122 @@ desired effect
     <section class="content">
 
       <!-- Your Page Content Here -->
+
+			<!-- Imposta il layout su una sola colonna -->
+			<div class="row">
+				<div class="col-xs-12">
+
+
+			<?php
+				if($pag=="index")
+					include 'pages/index.php';
+
+				if($_SESSION["ruolo"]=="studente"){
+
+				}elseif ($_SESSION["ruolo"]=="docente") {
+
+				}elseif ($_SESSION["ruolo"]=="amministratore") {
+					if($pag=="usrlist")
+						include 'pages/usrlist.php';
+				}
+
+			?>
+
+
+						<div class="box">
+							<div class="box-header">
+								<h3 class="box-title">Data Table With Full Features</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<table id="example1" class="table table-bordered table-striped">
+									<thead>
+									<tr>
+										<th>Rendering engine</th>
+										<th>Browser</th>
+										<th>Platform(s)</th>
+										<th>Engine version</th>
+										<th>CSS grade</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td>Trident</td>
+										<td>Internet
+											Explorer 4.0
+										</td>
+										<td>Win 95+</td>
+										<td> 4</td>
+										<td>X</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet
+											Explorer 5.0
+										</td>
+										<td>Win 95+</td>
+										<td>5</td>
+										<td>C</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet
+											Explorer 5.5
+										</td>
+										<td>Win 95+</td>
+										<td>5.5</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet
+											Explorer 6
+										</td>
+										<td>Win 98+</td>
+										<td>6</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>Internet Explorer 7</td>
+										<td>Win XP SP2+</td>
+										<td>7</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Trident</td>
+										<td>AOL browser (AOL desktop)</td>
+										<td>Win XP</td>
+										<td>6</td>
+										<td>A</td>
+									</tr>
+									<tr>
+										<td>Gecko</td>
+										<td>Firefox 1.0</td>
+										<td>Win 98+ / OSX.2+</td>
+										<td>1.7</td>
+										<td>A</td>
+									</tr>
+									</tbody>
+									<tfoot>
+									<tr>
+										<th>Rendering engine</th>
+										<th>Browser</th>
+										<th>Platform(s)</th>
+										<th>Engine version</th>
+										<th>CSS grade</th>
+									</tr>
+									</tfoot>
+								</table>
+							</div>
+							<!-- /.box-body -->
+						</div>
+						<!-- /.box -->
+
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+
+
 
     </section>
     <!-- /.content -->
@@ -269,12 +342,30 @@ desired effect
 <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
+<!-- SlimScroll -->
+<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="plugins/fastclick/fastclick.js"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. Slimscroll is required when using the
-     fixed layout. -->
+
+<script>
+	//Script per le tabelle complesse
+	$(function () {
+		$("#example1").DataTable();
+		$('#example2').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"searching": false,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false
+		});
+	});
+</script>
 </body>
 </html>

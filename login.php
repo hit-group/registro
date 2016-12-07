@@ -3,7 +3,7 @@ session_start();
 
 //Se una sessione è attiva, la chiude e torna alla homepage.
 if(isset($_SESSION["ses_username"])){
-  include 'include/session/stop.php';
+  include_once 'include/session/stop.php';
   die();
 }
 //Altrimenti mostra una pagina di login
@@ -37,12 +37,13 @@ if(isset($_SESSION["ses_username"])){
   <![endif]-->
 
   <script src="js/loginform.js"></script>
+  <script src="js/cookieutils.js"></script>
 
 </head>
 <body class="hold-transition login-page" onload="checkInterval()">
 <div class="login-box">
   <div class="login-logo">
-    <a href="index2.html"><b>HIT</b> Group</a>
+    <a href="https://hit-group.github.io/"><b>HIT</b> Group</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -54,7 +55,6 @@ if(isset($_SESSION["ses_username"])){
           echo "Effettua il login per accedere al registro elettronico";
       ?>
     </p>
-
     <form action="include/session/login_submit.php" method="post">
       <div class="form-group has-feedback">
         <input name="username" id="username" type="text" class="form-control" placeholder="Username">
@@ -68,7 +68,7 @@ if(isset($_SESSION["ses_username"])){
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> Ricordami
+              <input type="checkbox" name="cookieremember"> Ricordami
             </label>
           </div>
         </div>
