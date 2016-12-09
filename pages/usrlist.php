@@ -2,14 +2,267 @@
   echo "Lista utenti<br><br>";
 
   if($show=="all"){
-    echo "tutti gli utenti";
+    // Create connection
+    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+    // Check connection
+    if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM users";
+    $result = $conn->query($sql);
+
+    echo '						<div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title">Utenti registrati</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Classe</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Ruolo</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      ';
+    if ($result->num_rows > 0) {
+         // output data of each row
+         while($row = $result->fetch_assoc()) {
+           echo "<tr>";
+           echo "<td>". $row["nome"]. "</td>
+                 <td>". $row["cognome"]. "</td>
+                 <td>". $row["classe"]. "</td>
+                 <td>". $row["username"] . "</td>
+                 <td>". $row["email"] ."</td>
+                 <td>". $row["ruolo"] ."</td>";
+           echo "</tr>";
+         }
+    } else {
+         //echo "0 risultati";
+    }
+    echo '</tbody>
+        <tfoot>
+        <tr>
+          <th>Nome</th>
+          <th>Cognome</th>
+          <th>Classe</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Ruolo</th>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    ';
+
+    $conn->close();
+
   }elseif($show=="stu"){
-    echo "studenti";
+
+    // Create connection
+    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+    // Check connection
+    if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM users WHERE ruolo='studente'";
+    $result = $conn->query($sql);
+
+    echo '						<div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title">Utenti registrati</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Classe</th>
+                        <th>Username</th>
+                        <th>Email</th>
+
+                      </tr>
+                      </thead>
+                      <tbody>
+                      ';
+    if ($result->num_rows > 0) {
+         // output data of each row
+         while($row = $result->fetch_assoc()) {
+           echo "<tr>";
+           echo "<td>". $row["nome"]. "</td>
+                 <td>". $row["cognome"]. "</td>
+                 <td>". $row["classe"]. "</td>
+                 <td>". $row["username"] . "</td>
+                 <td>". $row["email"] ."</td>";
+
+           echo "</tr>";
+         }
+    } else {
+         //echo "0 risultati";
+    }
+    echo '</tbody>
+        <tfoot>
+        <tr>
+          <th>Nome</th>
+          <th>Cognome</th>
+          <th>Classe</th>
+          <th>Username</th>
+          <th>Email</th>
+
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    ';
+
+    $conn->close();
+
   }elseif($show=="doc"){
-    echo "docenti";
+    // Create connection
+    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+    // Check connection
+    if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM users WHERE ruolo='docente'";
+    $result = $conn->query($sql);
+
+    echo '						<div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title">Utenti registrati</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+
+                        <th>Username</th>
+                        <th>Email</th>
+
+                      </tr>
+                      </thead>
+                      <tbody>
+                      ';
+    if ($result->num_rows > 0) {
+         // output data of each row
+         while($row = $result->fetch_assoc()) {
+           echo "<tr>";
+           echo "<td>". $row["nome"]. "</td>
+                 <td>". $row["cognome"]. "</td>
+
+                 <td>". $row["username"] . "</td>
+                 <td>". $row["email"] ."</td>";
+
+           echo "</tr>";
+         }
+    } else {
+         //echo "0 risultati";
+    }
+    echo '</tbody>
+        <tfoot>
+        <tr>
+          <th>Nome</th>
+          <th>Cognome</th>
+
+          <th>Username</th>
+          <th>Email</th>
+
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    ';
+
+    $conn->close();
+
   }elseif($show=="adm"){
-    echo "amministratori";
-    
+    // Create connection
+    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+    // Check connection
+    if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT * FROM users WHERE ruolo='amministratore'";
+    $result = $conn->query($sql);
+
+    echo '						<div class="box">
+                  <div class="box-header">
+                    <h3 class="box-title">Utenti registrati</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+
+                        <th>Username</th>
+                        <th>Email</th>
+
+                      </tr>
+                      </thead>
+                      <tbody>
+                      ';
+    if ($result->num_rows > 0) {
+         // output data of each row
+         while($row = $result->fetch_assoc()) {
+           echo "<tr>";
+           echo "<td>". $row["nome"]. "</td>
+                 <td>". $row["cognome"]. "</td>
+
+                 <td>". $row["username"] . "</td>
+                 <td>". $row["email"] ."</td>";
+           echo "</tr>";
+         }
+    } else {
+         //echo "0 risultati";
+    }
+    echo '</tbody>
+        <tfoot>
+        <tr>
+          <th>Nome</th>
+          <th>Cognome</th>
+
+          <th>Username</th>
+          <th>Email</th>
+
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+    ';
+
+    $conn->close();
+
+
   }
-  include 'tests/usr_dump.php';
+
+
 ?>

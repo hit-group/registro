@@ -36,9 +36,9 @@
 
         //Voce del menu per aggiungere (registrare) nuovi utenti (studenti o docenti)
         echo ('<li class="');
-        if($pag=="addstudent")
+        if($pag=="addusr")
           echo ('active');
-        echo ('"><a href="/?p=addstudent"><i class="fa fa-link"></i> <span>Inserimento utenti</span></a></li>');
+        echo ('"><a href="/?p=addusr"><i class="fa fa-link"></i> <span>Inserimento utenti</span></a></li>');
 
 
         echo '
@@ -50,10 +50,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/?p=usrlist&show=all"><i class="fa fa-circle-o"></i> Tutti</a></li>
-            <li><a href="/?p=usrlist&show=stu"><i class="fa fa-circle-o"></i> Studenti</a></li>
-            <li><a href="/?p=usrlist&show=doc"><i class="fa fa-circle-o"></i> Docenti</a></li>
-            <li><a href="/?p=usrlist&show=adm"><i class="fa fa-circle-o"></i> Amministratori</a></li>
+            <li class="'; if($show==all)echo "active"; echo'"><a href="/?p=usrlist&show=all"><i class="fa fa-circle-o"></i> Tutti</a></li>
+            <li class="'; if($show==stu)echo "active"; echo'"><a href="/?p=usrlist&show=stu"><i class="fa fa-circle-o"></i> Studenti</a></li>
+            <li class="'; if($show==doc)echo "active"; echo'"><a href="/?p=usrlist&show=doc"><i class="fa fa-circle-o"></i> Docenti</a></li>
+            <li class="'; if($show==adm)echo "active"; echo'"><a href="/?p=usrlist&show=adm"><i class="fa fa-circle-o"></i> Amministratori</a></li>
           </ul>
         </li>';
 
