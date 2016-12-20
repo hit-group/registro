@@ -14,6 +14,7 @@
    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
   }
 
+
   if(isset($_POST["password"]))
     $password=htmlspecialchars($_POST["password"]);
   else
@@ -26,16 +27,29 @@
   $email=htmlspecialchars($_POST["email"]);
   $ruolo=htmlspecialchars($_POST["ruolo"]);
 
+
+
   // Crea una nuova connessione
   $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+
+  //Modifica l'input in modo da evitare attacchi di tipo SQL injection
+  $password=mysqli_real_escape_string($conn,$password);
+  $nome=mysqli_real_escape_string($conn,$nome);
+  $cognome=mysqli_real_escape_string($conn,$cognome);
+  $scuola=mysqli_real_escape_string($conn,$scuola);
+  $classe=mysqli_real_escape_string($conn,$classe);
+  $email=mysqli_real_escape_string($conn,$email);
+  $ruolo=mysqli_real_escape_string($conn,$ruolo);
+
 
   // Controlla la connessione
   if ($conn->connect_error) {
       die("Connessione fallita: " . $conn->connect_error);
   }
-  $password=password_hash($password, PASSWORD_DEFAULT);
-  $sql = "INSERT INTO users (password, nome, cognome, scuola, classe, ruolo, email)
+  //$password=password_hash($password, PASSWORD_DEFAULT);
+  $sql = "INSERT INTO users (temp_pwd, nome, cognome, scuola, classe, ruolo, email)
   VALUES ('$password', '$nome', '$cognome', '$scuola', '$classe', '$ruolo', '$email')";
+
 
   if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
@@ -44,7 +58,7 @@
     //Crea l'username accodando l'userid
     $username= clean($nome){0} . substr(clean($cognome),0,4) . $last_id;
     $username=strtolower($username);
-     
+
     //si riconnette ed aggiorna il record appena creato
     $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
     $sql = "UPDATE users SET username='$username' WHERE id=$last_id";

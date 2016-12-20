@@ -83,8 +83,17 @@
                 <img src="img/user_logo.png" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $_SESSION["nomecompleto"];?> - <?php echo $_SESSION["classe"]; ?>
+                  <?php
+										if($_SESSION["ruolo"]=="studente"){
+												echo $_SESSION["nomecompleto"];
+												echo " - ";
+												echo $_SESSION["classe"];
+										}else{
+												echo $_SESSION["nomecompleto"];
+										}
+										?>
                   <small><?php echo $_SESSION["scuola"]; ?></small>
+									
                 </p>
               </li>
 

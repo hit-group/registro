@@ -1,12 +1,26 @@
 <?php
 session_start();
+include 'include/session/db_credentials.php'; //Include le credenziali di accesso al database
+require_once('include/session/fn_loginsubmit.php'); //Include le funzioni per effettuare il login
 
 //Se una sessione è attiva, la chiude e torna alla homepage.
 if(isset($_SESSION["ses_username"])){
-  include_once 'include/session/stop.php';
+  include 'include/session/stop.php';
   die();
 }
-//Altrimenti mostra una pagina di login
+
+//Se tutti i parametri sono stati forniti tenta l'accesso, altrimenti mostra una
+//pagina di login.
+
+if(isset($_POST["username"])&&isset($_POST["password"])){
+  //Tenta l'acceso
+  checkLogin($_POST["username"],$_POST["password"]);
+  die();
+}else{
+  //Prosegue mostrando la pagina di login
+}
+
+
 ?>
 
 
@@ -55,7 +69,8 @@ if(isset($_SESSION["ses_username"])){
           echo "Effettua il login per accedere al registro elettronico";
       ?>
     </p>
-    <form action="include/session/login_submit.php" method="post">
+    <!-- form action="include/session/login_submit.php" method="post" -->
+      <form action="login.php" method="post">
       <div class="form-group has-feedback">
         <input name="username" id="username" type="text" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

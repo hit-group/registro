@@ -25,11 +25,12 @@
 
   <script>
   function fnSelect() {
-    mailGen();
+    //mailGen();
     if(document.getElementById("roleselect").value=="Studente"){
-      //alert("mostro il selettore di classe");
+      //Mostra il selettore della classe
       document.getElementById("divnascosto").outerHTML='<div id="divnascosto" class="form-group"><label>Classe</label><select name="classe" form="usrregform" class="form-control select2" style="width: 100%;"><option>3 AFM S</option><option>4 AFM S</option><option>5 AFM S</option><option>3 CAT S</option><option>4 CAT S</option><option>5 CAT S</option></select><p class="help-block">Necessaria solo se l utente registrato è uno studente</p></div>';
     }else{
+      //Nasconde il selettore della classe
       document.getElementById("divnascosto").outerHTML='<div id="divnascosto"><div>';
     }
 
@@ -40,6 +41,16 @@
   <form id="usrregform" role="form" action="/include/forms/post_register.php" method="post">
     <div class="box-body">
       <div class="form-group">
+        <label>Ruolo</label>
+        <select id="roleselect"  name="ruolo" form="usrregform" class="form-control select2" style="width: 100%;" onchange="fnSelect();mainGen();">
+          <option>Studente</option>
+          <option>Docente</option>
+          <option>Amministratore</option>
+        </select>
+      </div>
+      <!-- /.form-group -->
+
+      <div class="form-group">
         <label for="inputnome">Nome</label>
         <input onkeyup="mailGen()" name="nome" type="text" class="form-control" id="inputnome" placeholder="Nome" required>
       </div>
@@ -48,13 +59,17 @@
         <input onkeyup="mailGen()" name="cognome" type="text" class="form-control" id="inputcognome" placeholder="Cognome" required>
       </div>
 
-      <div class="form-group">
-        <label>Ruolo</label>
-        <select id="roleselect"  name="ruolo" form="usrregform" class="form-control select2" style="width: 100%;" onchange="fnSelect()">
-          <option>Studente</option>
-          <option>Docente</option>
-          <option>Amministratore</option>
+      <div id="divnascosto" class="form-group">
+        <label>Classe</label>
+        <select id="inputclasse" name="classe" form="usrregform" class="form-control select2" style="width: 100%;">
+          <option>3 AFM S</option>
+          <option>4 AFM S</option>
+          <option>5 AFM S</option>
+          <option>3 CAT S</option>
+          <option>4 CAT S</option>
+          <option>5 CAT S</option>
         </select>
+        <p class="help-block">Necessaria solo se l'utente registrato è uno studente</p>
       </div>
       <!-- /.form-group -->
 
@@ -65,7 +80,10 @@
 
       <div class="form-group">
         <label for="inputpassword">Password provvisoria</label>
-        <input name="password" type="text" class="form-control" id="inputpassword" placeholder="Password"
+
+        <!-- Il campo per la password temporanea non è modificalbile -->
+        <!-- Se necessario eliminare readonly="readonly" -->
+        <input name="password" type="text" class="form-control" id="inputpassword" placeholder="Password" readonly="readonly"
         value="<?php
         function random_str($length, $keyspace = '0123456789')
         {
@@ -78,22 +96,10 @@
         }
         echo random_str(6);
         ?>">
-        <p class="help-block">Al primo accesso l'utente dovrà cambiarla</p>
+        <p class="help-block">Al primo accesso l'utente dovrà obbligatoriamente cambiarla</p>
       </div>
 
-      <div id="divnascosto" class="form-group">
-        <label>Classe</label>
-        <select name="classe" form="usrregform" class="form-control select2" style="width: 100%;">
-          <option>3 AFM S</option>
-          <option>4 AFM S</option>
-          <option>5 AFM S</option>
-          <option>3 CAT S</option>
-          <option>4 CAT S</option>
-          <option>5 CAT S</option>
-        </select>
-        <p class="help-block">Necessaria solo se l'utente registrato è uno studente</p>
-      </div>
-      <!-- /.form-group -->
+
 
     </div>
     <!-- /.box-body -->
