@@ -34,7 +34,11 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
-           echo "<tr>";
+           $id=$row["ID"];
+           echo '<tr id="usr';
+           echo "$id";
+           echo '">';
+
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
                  <td>". $row["classe"]. "</td>
@@ -63,6 +67,8 @@
     </div>
     <!-- /.box -->
     ';
+
+
 
     $conn->close();
 

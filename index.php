@@ -7,6 +7,11 @@
 		header("Location: /login.php");
 		die();
 	}
+
+	if(isset($_SESSION["cambiapassword"])&&$_SESSION["cambiapassword"]==true){
+		header("Location: /changepwd.php");
+		die();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +98,7 @@
 										}
 										?>
                   <small><?php echo $_SESSION["scuola"]; ?></small>
-									
+
                 </p>
               </li>
 

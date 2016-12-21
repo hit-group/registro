@@ -4,7 +4,7 @@ include 'include/session/db_credentials.php'; //Include le credenziali di access
 require_once('include/session/fn_loginsubmit.php'); //Include le funzioni per effettuare il login
 
 //Se una sessione è attiva, la chiude e torna alla homepage.
-if(isset($_SESSION["ses_username"])){
+if(isset($_SESSION["username"])){
   include 'include/session/stop.php';
   die();
 }

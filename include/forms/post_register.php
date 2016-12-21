@@ -26,7 +26,7 @@
   $classe=htmlspecialchars($_POST["classe"]);
   $email=htmlspecialchars($_POST["email"]);
   $ruolo=htmlspecialchars($_POST["ruolo"]);
-
+  $ruolo=strtolower($ruolo);
 
 
   // Crea una nuova connessione
