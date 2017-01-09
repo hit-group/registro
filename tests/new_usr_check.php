@@ -23,7 +23,7 @@
       die("Connessione fallita: " . $conn->connect_error);
   }
   $password=password_hash($password, PASSWORD_DEFAULT);
-  $sql = "INSERT INTO users (password, nome, cognome, scuola, classe, ruolo, email)
+  $sql = "INSERT INTO utenti (password, nome, cognome, scuola, classe, ruolo, email)
   VALUES ('$password', '$nome', '$cognome', '$scuola', '$classe', '$ruolo', '$email')";
 
   if ($conn->query($sql) === TRUE) {
@@ -36,7 +36,7 @@
 
     //si riconnette ed aggiorna il record appena creato
     $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    $sql = "UPDATE users SET username='$username' WHERE id=$last_id";
+    $sql = "UPDATE utenti SET username='$username' WHERE id=$last_id";
     if ($conn->connect_error)
       die("Connection failed: " . $conn->connect_error);
     if ($conn->query($sql) === TRUE) {

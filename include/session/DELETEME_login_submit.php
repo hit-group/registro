@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 
 $username=htmlspecialchars($_POST["username"]);
 $password=htmlspecialchars($_POST["password"]);
-$sql = "SELECT * FROM users WHERE username = '$username'";
+$sql = "SELECT * FROM utenti WHERE username = '$username'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

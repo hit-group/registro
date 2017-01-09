@@ -21,7 +21,7 @@ function checkLogin($username, $password){
     $password=mysqli_real_escape_string($conn,$password);
 
 
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM utenti WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -92,7 +92,7 @@ function checkLogin($username, $password){
 
 
           $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-          $sql = "UPDATE users SET temp_pwd='' WHERE username='$username'";
+          $sql = "UPDATE utenti SET temp_pwd='' WHERE username='$username'";
           $result = $conn->query($sql);
 
 

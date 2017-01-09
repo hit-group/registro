@@ -21,7 +21,7 @@
     $password = password_hash($password, PASSWORD_DEFAULT);
     $username = mysqli_real_escape_string($conn,$_SESSION["username"]);
 
-    $sql = "UPDATE users SET temp_pwd='', password='$password' WHERE username='$username'";
+    $sql = "UPDATE utenti SET temp_pwd='', password='$password' WHERE username='$username'";
     if ($conn->connect_error)
       die("Connection failed: " . $conn->connect_error);
     if ($conn->query($sql) === TRUE) {
