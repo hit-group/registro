@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+
 -- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
@@ -27,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `classi` (
+
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sigla` varchar(50) DEFAULT NULL,
   `nome` varchar(50) DEFAULT NULL,
@@ -72,7 +74,9 @@ INSERT INTO `insegnamenti` (`id_professore`, `id_classe`, `materia`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `utenti` (
+
   `id` int(11) NOT NULL AUTO_INCREMENT,
+
   `username` varchar(50) DEFAULT NULL,
   `nome` varchar(50) DEFAULT NULL,
   `cognome` varchar(50) DEFAULT NULL,
@@ -81,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `utenti` (
   `scuola` varchar(50) DEFAULT NULL,
   `classe` int(11) DEFAULT NULL,
   `password` varchar(250) DEFAULT NULL,
+
   `temp_pwd` varchar(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `classe` (`classe`)
@@ -91,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `utenti` (
 --
 
 INSERT INTO `utenti` (`id`, `username`, `nome`, `cognome`, `email`, `ruolo`, `scuola`, `classe`, `password`, `temp_pwd`) VALUES
+
 (3, 'admin', 'admin', 'admin', 'admin@admin.it', 'amministratore', 'Pilati', NULL, '$2y$10$e0C2JHbKhjJgDPAftY9AW.9405e6Zhcnha9ZJ8nEowcqeVVHHeY8e', ''),
 (4, 'doc1', 'Mario', 'Rossi', 'email@email.it', 'docente', NULL, NULL, NULL, '123456'),
 (5, 'doc2', 'Giuseppe', 'Verdi', 'email@email.net', 'docente', NULL, NULL, NULL, '123456');
@@ -106,11 +112,14 @@ ALTER TABLE `insegnamenti`
   ADD CONSTRAINT `insegnamenti_ibfk_1` FOREIGN KEY (`id_professore`) REFERENCES `utenti` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `insegnamenti_ibfk_2` FOREIGN KEY (`id_classe`) REFERENCES `classi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+
 --
 -- Limiti per la tabella `utenti`
 --
 ALTER TABLE `utenti`
+
   ADD CONSTRAINT `utenti_ibfk_1` FOREIGN KEY (`classe`) REFERENCES `classi` (`id`);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
