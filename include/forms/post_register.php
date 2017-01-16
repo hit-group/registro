@@ -55,40 +55,44 @@
 	  }
 
 
-		  if(isset($_POST["password"]))
-		    $password=htmlspecialchars($_POST["password"]);
-		  else
-		    $password="a"; //TODO genera password casualmente
+	
+        function random_str($length, $keyspace = '0123456789')
+        {
+            $str = '';
+            $max = mb_strlen($keyspace, '8bit') - 1;
+            for ($i = 0; $i < $length; ++$i) {
+                $str .= $keyspace[mt_rand(0, $max)];
+            }
+            return $str;
+        }
+        $password=random_str(6);
+        
 
 
-				$nome=htmlspecialchars($_POST["nome"]);
-			  $cognome=htmlspecialchars($_POST["cognome"]);
-			  $scuola="ITET C.A. Pilati";
-			  $classe=htmlspecialchars($_POST["classe"]);
-			  $email=htmlspecialchars($_POST["email"]);
-			  $ruolo=htmlspecialchars(strtolower($_POST["ruolo"]));
-			  $ruolo=strtolower($ruolo);
+	  $nome=htmlspecialchars($_POST["nome"]);
+	  $cognome=htmlspecialchars($_POST["cognome"]);
+	  $scuola="ITET C.A. Pilati";
+	  $classe=htmlspecialchars($_POST["classe"]);
+	  $email=htmlspecialchars($_POST["email"]);
+	  $ruolo=htmlspecialchars(strtolower($_POST["ruolo"]));
+	  $ruolo=strtolower($ruolo);
 
 
 
 
-
-
-
-				  // Crea una nuova connessione
-				  $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
+	 // Crea una nuova connessione
+	 $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
 
 
 
 
-				  //Modifica l'input in modo da evitare attacchi di tipo SQL injection
-				  $password=mysqli_real_escape_string($conn,$password);
-				  $nome=mysqli_real_escape_string($conn,$nome);
-				  $cognome=mysqli_real_escape_string($conn,$cognome);
-				  $scuola=mysqli_real_escape_string($conn,$scuola);
-				  $classe=1;
-				  $email=mysqli_real_escape_string($conn,$email);
-				  $ruolo=mysqli_real_escape_string($conn,$ruolo);
+	//Modifica l'input in modo da evitare attacchi di tipo SQL injection
+	$nome=mysqli_real_escape_string($conn,$nome);
+	$cognome=mysqli_real_escape_string($conn,$cognome);
+	$scuola=mysqli_real_escape_string($conn,$scuola);
+	$classe=1;
+	$email=mysqli_real_escape_string($conn,$email);
+	$ruolo=mysqli_real_escape_string($conn,$ruolo);
 
 
 				  // Controlla la connessione
