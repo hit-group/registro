@@ -9,7 +9,7 @@
          die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM users";
+    $sql = "SELECT * FROM utenti";
     $result = $conn->query($sql);
 
     echo '						<div class="box">
@@ -81,7 +81,7 @@
          die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM users WHERE ruolo='studente'";
+    $sql = "SELECT * FROM utenti WHERE ruolo='studente'";
     $result = $conn->query($sql);
 
     echo '						<div class="box">
@@ -146,7 +146,7 @@
          die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM users WHERE ruolo='docente'";
+    $sql = "SELECT * FROM utenti WHERE ruolo='docente'";
     $result = $conn->query($sql);
 
     echo '						<div class="box">
@@ -211,7 +211,7 @@
          die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM users WHERE ruolo='amministratore'";
+    $sql = "SELECT * FROM utenti WHERE ruolo='amministratore'";
     $result = $conn->query($sql);
 
     echo '						<div class="box">

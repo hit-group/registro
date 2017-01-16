@@ -21,7 +21,7 @@ function checkLogin($username, $password){
     $password=mysqli_real_escape_string($conn,$password);
 
 
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM utenti WHERE username = '$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -73,13 +73,18 @@ function checkLogin($username, $password){
           $_SESSION["ruolo"]=$row["ruolo"];
           $_SESSION["scuola"]=$row["scuola"];
           $_SESSION["classe"]=$row["classe"];
+
           if($_SESSION["ruolo"]=="studente"){
             $_SESSION["nomecompleto"]=$_SESSION["nome"]." ".$_SESSION["cognome"];
           }elseif($_SESSION["ruolo"]=="docente") {
             $_SESSION["nomecompleto"]=$_SESSION["nome"]." ".$_SESSION["cognome"];
           }elseif($_SESSION["ruolo"]=="amministratore") {
             $_SESSION["nomecompleto"]="Amministratore";
+
           }
+
+
+
           //Salva un cookie con l'username (se richiesto dall'utente)
           if(isset($_POST["cookieremember"])){
               //l'utente ha richiesto di salvare il cookie
@@ -92,7 +97,7 @@ function checkLogin($username, $password){
 
 
           $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-          $sql = "UPDATE users SET temp_pwd='' WHERE username='$username'";
+          $sql = "UPDATE utenti SET temp_pwd='' WHERE username='$username'";
           $result = $conn->query($sql);
 
 

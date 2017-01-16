@@ -1,11 +1,12 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.12deb2+deb8u2
+
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Gen 15, 2017 alle 13:25
--- Versione del server: 5.5.53-0+deb8u1
--- PHP Version: 5.6.29-0+deb8u1
+-- Generato il: Gen 16, 2017 alle 14:52
+-- Versione del server: 5.5.53-0ubuntu0.14.04.1
+-- Versione PHP: 5.5.9-1ubuntu4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,10 +28,44 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `classi` (
-`id` int(11) NOT NULL,
+
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sigla` varchar(50) DEFAULT NULL,
-  `nome` varchar(50) DEFAULT NULL
+  `nome` varchar(50) DEFAULT NULL,
+  `anno` int(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dump dei dati per la tabella `classi`
+--
+
+INSERT INTO `classi` (`id`, `sigla`, `nome`, `anno`) VALUES
+(1, '3afms', '3 AFM S', 2017),
+(2, '4afms', '4 AFM S', 2017);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `insegnamenti`
+--
+
+CREATE TABLE IF NOT EXISTS `insegnamenti` (
+  `id_professore` int(11) NOT NULL,
+  `id_classe` int(11) NOT NULL,
+  `materia` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_professore`,`id_classe`,`materia`),
+  KEY `id_professore` (`id_professore`),
+  KEY `id_classe` (`id_classe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dump dei dati per la tabella `insegnamenti`
+--
+
+INSERT INTO `insegnamenti` (`id_professore`, `id_classe`, `materia`) VALUES
+(4, 2, 'Italiano'),
+(5, 2, 'Matematica');
 
 -- --------------------------------------------------------
 
@@ -39,7 +74,9 @@ CREATE TABLE IF NOT EXISTS `classi` (
 --
 
 CREATE TABLE IF NOT EXISTS `utenti` (
-`id` int(11) NOT NULL,
+
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+
   `username` varchar(50) DEFAULT NULL,
   `nome` varchar(50) DEFAULT NULL,
   `cognome` varchar(50) DEFAULT NULL,
@@ -48,55 +85,41 @@ CREATE TABLE IF NOT EXISTS `utenti` (
   `scuola` varchar(50) DEFAULT NULL,
   `classe` int(11) DEFAULT NULL,
   `password` varchar(250) DEFAULT NULL,
-  `temp_pwd` varchar(6) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+  `temp_pwd` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `classe` (`classe`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dump dei dati per la tabella `utenti`
 --
 
 INSERT INTO `utenti` (`id`, `username`, `nome`, `cognome`, `email`, `ruolo`, `scuola`, `classe`, `password`, `temp_pwd`) VALUES
-(3, 'admin', 'admin', 'admin', 'admin@admin.it', 'amministratore', 'Pilati', NULL, NULL, '123456');
 
---
--- Indexes for dumped tables
---
+(3, 'admin', 'admin', 'admin', 'admin@admin.it', 'amministratore', 'Pilati', NULL, '$2y$10$e0C2JHbKhjJgDPAftY9AW.9405e6Zhcnha9ZJ8nEowcqeVVHHeY8e', ''),
+(4, 'doc1', 'Mario', 'Rossi', 'email@email.it', 'docente', NULL, NULL, NULL, '123456'),
+(5, 'doc2', 'Giuseppe', 'Verdi', 'email@email.net', 'docente', NULL, NULL, NULL, '123456');
 
---
--- Indexes for table `classi`
---
-ALTER TABLE `classi`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `utenti`
---
-ALTER TABLE `utenti`
- ADD PRIMARY KEY (`id`), ADD KEY `classe` (`classe`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `classi`
---
-ALTER TABLE `classi`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `utenti`
---
-ALTER TABLE `utenti`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Limiti per le tabelle scaricate
 --
 
 --
+-- Limiti per la tabella `insegnamenti`
+--
+ALTER TABLE `insegnamenti`
+  ADD CONSTRAINT `insegnamenti_ibfk_1` FOREIGN KEY (`id_professore`) REFERENCES `utenti` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `insegnamenti_ibfk_2` FOREIGN KEY (`id_classe`) REFERENCES `classi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+--
 -- Limiti per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-ADD CONSTRAINT `utenti_ibfk_1` FOREIGN KEY (`classe`) REFERENCES `classi` (`id`);
+
+  ADD CONSTRAINT `utenti_ibfk_1` FOREIGN KEY (`classe`) REFERENCES `classi` (`id`);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
