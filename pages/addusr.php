@@ -78,29 +78,6 @@
         <input name="email" type="email" class="form-control" id="exampleInputEmail1" placeholder="Indirizzo email">
       </div>
 
-      <div class="form-group">
-        <label for="inputpassword">Password provvisoria</label>
-
-        <!-- Il campo per la password temporanea non è modificalbile -->
-        <!-- Se necessario eliminare readonly="readonly" -->
-        <input name="password" type="text" class="form-control" id="inputpassword" placeholder="Password" readonly="readonly"
-        value="<?php
-        function random_str($length, $keyspace = '0123456789')
-        {
-            $str = '';
-            $max = mb_strlen($keyspace, '8bit') - 1;
-            for ($i = 0; $i < $length; ++$i) {
-                $str .= $keyspace[mt_rand(0, $max)];
-            }
-            return $str;
-        }
-        echo random_str(6);
-        ?>">
-        <p class="help-block">Al primo accesso l'utente dovrà obbligatoriamente cambiarla</p>
-      </div>
-
-
-
     </div>
     <!-- /.box-body -->
 
