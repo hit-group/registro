@@ -73,13 +73,18 @@ function checkLogin($username, $password){
           $_SESSION["ruolo"]=$row["ruolo"];
           $_SESSION["scuola"]=$row["scuola"];
           $_SESSION["classe"]=$row["classe"];
+
           if($_SESSION["ruolo"]=="studente"){
             $_SESSION["nomecompleto"]=$_SESSION["nome"]." ".$_SESSION["cognome"];
           }elseif($_SESSION["ruolo"]=="docente") {
             $_SESSION["nomecompleto"]=$_SESSION["nome"]." ".$_SESSION["cognome"];
           }elseif($_SESSION["ruolo"]=="amministratore") {
             $_SESSION["nomecompleto"]="Amministratore";
+
           }
+
+
+
           //Salva un cookie con l'username (se richiesto dall'utente)
           if(isset($_POST["cookieremember"])){
               //l'utente ha richiesto di salvare il cookie
