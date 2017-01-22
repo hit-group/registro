@@ -164,6 +164,8 @@
 						include 'pages/addusr.php';
 					elseif ($pag=="addusrok")
 						include 'pages/addusr_ok.php';
+					elseif ($pag=="printpwd")
+						include 'pages/stampa-password.php';
 				}
 
 			?>

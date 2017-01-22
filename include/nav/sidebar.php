@@ -57,6 +57,11 @@
           </ul>
         </li>';
 
+
+        echo ('<li class="');
+        if($pag=="printpwd")
+          echo ('active');
+        echo ('"><a href="/?p=printpwd"><i class="fa fa-table"></i> <span>Stampa password</span></a></li>');
       }
       ?>
     </ul>
