@@ -1,22 +1,19 @@
 <?php
 /*
-  Connessione al DBMS e selezione del dataabse.
+  Connessione al DBMS e selezione del database.
 */
-# blocco dei parametri di connessione
-// nome di host
-$host = "localhost";
-// username dell'utente in connessione
-$user = "hit";
-// password dell'utente
-$password = "";
-// nome del database
-$db = "registro_db";
 
-   
-  
+/*
+# blocco dei parametri di connessione
+$db_servername = "localhost";
+$db_username = "root";
+$db_password = "rebenciuc";
+$db_name = "registro_db";
+*/
+
 # stringa di connessione al DBMS
 // istanza dell'oggetto della classe MySQLi
-$connessione = new mysqli($host, $user, $password, $db);
+$connessione = new mysqli($db_servername, $db_username, $db_password, $db_name);
 
 // verifica su eventuali errori di connessione
 if ($connessione->connect_errno) {
