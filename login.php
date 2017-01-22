@@ -54,7 +54,7 @@ if(isset($_POST["username"])&&isset($_POST["password"])){
   <script src="js/cookieutils.js"></script>
 
 </head>
-<body class="hold-transition login-page" onload="checkInterval()">
+<body class="hold-transition login-page" onload="checkInterval();checkCookie();">
 <div class="login-box">
   <div class="login-logo">
     <a href="https://hit-group.github.io/"><b>HIT</b> Group</a>
@@ -72,7 +72,7 @@ if(isset($_POST["username"])&&isset($_POST["password"])){
     <!-- form action="include/session/login_submit.php" method="post" -->
       <form action="login.php" method="post">
       <div class="form-group has-feedback">
-        <input name="username" id="username" type="text" class="form-control" placeholder="Username">
+        <input name="username" id="username" type="text" class="form-control" placeholder="Username" onchange="usernameChanged(this);">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -83,7 +83,7 @@ if(isset($_POST["username"])&&isset($_POST["password"])){
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox" name="cookieremember"> Ricordami
+              <input id="cb" type="checkbox" name="cookieremember" onclick="checkboxClick(this);"> Ricordami
             </label>
           </div>
         </div>
@@ -115,6 +115,17 @@ if(isset($_POST["username"])&&isset($_POST["password"])){
       increaseArea: '20%' // optional
     });
   });
+
+
+  jQuery('input#cb').on('ifChanged', function (event) {
+    if ($(this).prop('checked')) {
+        checkboxClick(this);
+    } else {
+        checkboxClick(this);
+    }
+  });
+
+
 </script>
 </body>
 </html>
