@@ -9,7 +9,7 @@
          die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM utenti";
+    $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id";
     $result = $conn->query($sql);
 
     echo '						<div class="box">
@@ -41,7 +41,7 @@
 
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
-                 <td>". $row["classe"]. "</td>
+                 <td>". $row["nomeClasse"]. "</td>
                  <td>". $row["username"] . "</td>
                  <td>". $row["email"] ."</td>
                  <td>". $row["ruolo"] ."</td>";
