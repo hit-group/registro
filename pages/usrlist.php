@@ -74,7 +74,7 @@
 
 
 
-    $sql = "SELECT * FROM utenti WHERE ruolo='studente'";
+    $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente'";
     $result = $connessione->query($sql);
 
     echo '						<div class="box">
@@ -102,7 +102,7 @@
            echo "<tr>";
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
-                 <td>". $row["classe"]. "</td>
+                 <td>". $row["nomeClasse"]. "</td>
                  <td>". $row["username"] . "</td>
                  <td>". $row["email"] ."</td>";
 
