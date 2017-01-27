@@ -1,16 +1,15 @@
 <?php
+  //require_once($_SERVER['DOCUMENT_ROOT']."/include/session/db_credentials.php");
+  require $_SERVER['DOCUMENT_ROOT']."/include/session/onlyadmin.php";
+  include $_SERVER['DOCUMENT_ROOT']."/include/session/connessione.php";
+
   echo "Lista utenti<br><br>";
 
   if($show=="all"){
     // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
 
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id";
-    $result = $conn->query($sql);
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -70,19 +69,13 @@
 
 
 
-    $conn->close();
 
   }elseif($show=="stu"){
 
-    // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
+
 
     $sql = "SELECT * FROM utenti WHERE ruolo='studente'";
-    $result = $conn->query($sql);
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -136,18 +129,13 @@
     <!-- /.box -->
     ';
 
-    $conn->close();
+
 
   }elseif($show=="doc"){
-    // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
+
 
     $sql = "SELECT * FROM utenti WHERE ruolo='docente'";
-    $result = $conn->query($sql);
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -201,18 +189,11 @@
     <!-- /.box -->
     ';
 
-    $conn->close();
 
   }elseif($show=="adm"){
-    // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
 
     $sql = "SELECT * FROM utenti WHERE ruolo='amministratore'";
-    $result = $conn->query($sql);
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -265,10 +246,10 @@
     <!-- /.box -->
     ';
 
-    $conn->close();
 
 
   }
 
+  $connessione->close();
 
 ?>
