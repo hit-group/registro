@@ -27,4 +27,8 @@
          verbose="false"
 
   <!-- ... -->
+
+        <testsuite name="Tests">
+            <directory>./</directory>
+        </testsuite>
 </phpunit>
