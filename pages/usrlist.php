@@ -38,11 +38,11 @@
            echo '<tr id="usr';
            echo "$id";
            echo '">';
-			
+
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
                  <td>". $row["nomeClasse"]. "</td>
-                 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
+                 <td><a href='/?p=usrinfouser=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>
                  <td>". $row["ruolo"] ."</td>";
            echo "</tr>";
@@ -105,7 +105,7 @@
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
                  <td>". $row["nomeClasse"]. "</td>
-                 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
+                 <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
 
            echo "</tr>";
@@ -166,7 +166,7 @@
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
 
-                 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
+                 <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
 
            echo "</tr>";
@@ -225,7 +225,7 @@
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
 
-				 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
+				 <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
            echo "</tr>";
          }

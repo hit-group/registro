@@ -166,6 +166,8 @@
 						include 'pages/addusr_ok.php';
 					elseif ($pag=="printpwd")
 						include 'pages/stampa-password.php';
+					elseif ($pag=="usrinfo")
+						include 'pages/usrinfo.php';
 				}
 
 			?>
