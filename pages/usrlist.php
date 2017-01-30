@@ -1,16 +1,15 @@
 <?php
+  //require_once($_SERVER['DOCUMENT_ROOT']."/include/session/db_credentials.php");
+  require $_SERVER['DOCUMENT_ROOT']."/include/session/onlyadmin.php";
+  include $_SERVER['DOCUMENT_ROOT']."/include/session/connessione.php";
+
   echo "Lista utenti<br><br>";
 
   if($show=="all"){
     // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
 
-    $sql = "SELECT * FROM utenti";
-    $result = $conn->query($sql);
+    $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id";
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -34,15 +33,16 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+           $user= $row["username"];
            $id=$row["ID"];
            echo '<tr id="usr';
            echo "$id";
            echo '">';
-
+			
            echo "<td>". $row["nome"]. "</td>
-                 <td><a href='http://localhost/'>a". $row["cognome"]. "</a></td>
-                 <td>". $row["classe"]. "</td>
-                 <td>". $row["username"] . "</td>
+                 <td>". $row["cognome"]. "</td>
+                 <td>". $row["nomeClasse"]. "</td>
+                 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>
                  <td>". $row["ruolo"] ."</td>";
            echo "</tr>";
@@ -70,19 +70,13 @@
 
 
 
-    $conn->close();
 
   }elseif($show=="stu"){
 
-    // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
 
-    $sql = "SELECT * FROM utenti WHERE ruolo='studente'";
-    $result = $conn->query($sql);
+
+    $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente'";
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -106,11 +100,12 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+			 $user= $row["username"];
            echo "<tr>";
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
-                 <td>". $row["classe"]. "</td>
-                 <td>". $row["username"] . "</td>
+                 <td>". $row["nomeClasse"]. "</td>
+                 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
 
            echo "</tr>";
@@ -136,18 +131,13 @@
     <!-- /.box -->
     ';
 
-    $conn->close();
+
 
   }elseif($show=="doc"){
-    // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
+
 
     $sql = "SELECT * FROM utenti WHERE ruolo='docente'";
-    $result = $conn->query($sql);
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -171,11 +161,12 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+		   $user= $row["username"];
            echo "<tr>";
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
 
-                 <td>". $row["username"] . "</td>
+                 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
 
            echo "</tr>";
@@ -201,18 +192,11 @@
     <!-- /.box -->
     ';
 
-    $conn->close();
 
   }elseif($show=="adm"){
-    // Create connection
-    $conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
-    // Check connection
-    if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-    }
 
     $sql = "SELECT * FROM utenti WHERE ruolo='amministratore'";
-    $result = $conn->query($sql);
+    $result = $connessione->query($sql);
 
     echo '						<div class="box">
                   <div class="box-header">
@@ -236,11 +220,12 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+			 $user= $row["username"];
            echo "<tr>";
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
 
-                 <td>". $row["username"] . "</td>
+				 <td><a href='/infoutente.php?user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
            echo "</tr>";
          }
@@ -265,10 +250,10 @@
     <!-- /.box -->
     ';
 
-    $conn->close();
 
 
   }
 
+  $connessione->close();
 
 ?>
