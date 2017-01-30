@@ -40,7 +40,7 @@
            echo '">';
 
            echo "<td>". $row["nome"]. "</td>
-                 <td>". $row["cognome"]. "</td>
+                 <td><a href='http://localhost/'>a". $row["cognome"]. "</a></td>
                  <td>". $row["classe"]. "</td>
                  <td>". $row["username"] . "</td>
                  <td>". $row["email"] ."</td>

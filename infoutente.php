@@ -49,13 +49,13 @@
         echo "Password temporanea: ".$row["temp_pwd"];
       }
 
-      echo "<br><br><a>Elimina</a>";
+      echo "<br><br><a href='infoutente.php?delete=$username'>Elimina</a>";
       echo "<br><a>Cambia password</a>";
 
       // liberazione delle risorse occupate dal risultato
       $result->close();
     }else{
-      echo "Errore: utente". $username ." non presente nel database.";
+      echo "Errore: utente ". $username ." non presente nel database.";
     }
   }
   // chiusura della connessione
