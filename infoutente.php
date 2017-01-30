@@ -18,7 +18,7 @@
   // esecuzione della query per la selezione dei record
   // query argomento del metodo query()
 
-  if (!$result = $connessione->query("SELECT u.id,u.username,u.cognome,u.ruolo,u.email,u.nome as nomeUtente,c.nome as nomeClasse FROM classi as c, utenti as u WHERE u.username = '$username' AND c.id = u.classe")) {
+  if (!$result = $connessione->query("SELECT u.id,u.username,u.cognome,u.ruolo,u.email,u.nome as nomeUtente,c.nome as nomeClasse FROM classi as c RIGHT JOIN utenti as u ON c.id = u.classe WHERE u.username = '$username' ")) {
     echo "Errore della query: " . $connessione->error . ".";
     exit();
   }else{
