@@ -11,7 +11,7 @@
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
@@ -78,7 +78,7 @@
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente'";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
@@ -139,7 +139,7 @@
     $sql = "SELECT * FROM utenti WHERE ruolo='docente'";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
@@ -198,7 +198,7 @@
     $sql = "SELECT * FROM utenti WHERE ruolo='amministratore'";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
