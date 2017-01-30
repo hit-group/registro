@@ -26,31 +26,78 @@
     if($result->num_rows > 0) {
       // conteggio dei record restituiti dalla query
       $row = $result->fetch_array(MYSQLI_ASSOC);
+      echo '
 
-      echo "id = ".$row["id"]."<br>";
-      echo "username = ".$row["username"]."<br>";
-      echo "nome = ".$row["nomeUtente"]."<br>";
-      echo "cognome = ".$row["cognome"]."<br>";
-      echo "classe = ".$row["nomeClasse"]."<br>";
-      echo "ruolo = ".$row["ruolo"]."<br>";
-      echo "email = ".$row["email"]."<br>";
-
-
-      if($row["password"]==""){
-        echo "Password : non impostata<br>";
-      }else{
-        echo "Password : impostata<br>";
-      }
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Informazioni sull\'utente</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
 
 
-      if($row["temp_pwd"]==""){
-        echo "Password temporanea: non impostata";
-      }else{
-        echo "Password temporanea: ".$row["temp_pwd"];
-      }
+        <form id="usrregform" role="form">
+          <div class="box-body">
+            <div class="form-group">
+              <label>ID Utente:</label>';
+              echo " ".$row["id"];
+              echo '<br>
 
-      echo "<br><br><a href='infoutente.php?delete=$username'>Elimina</a>";
-      echo "<br><a>Cambia password</a>";
+              <label>Username:</label>';
+              echo " ".$row["username"];
+              echo '<br>
+
+              <label>Nome:</label>';
+              echo " ".$row["nomeUtente"];
+              echo '<br>
+
+              <label>Cognome:</label>';
+              echo " ".$row["cognome"];
+              echo '<br>
+
+              <label>Classe:</label>';
+              echo " ".$row["nomeClasse"];
+              echo '<br>
+
+              <label>Indirizzo e-mail:</label>';
+              echo " ".$row["email"];
+              echo '<br>
+
+              <label>Ruolo:</label>';
+              echo " ".$row["ruolo"];
+              echo '<br>
+
+              <label>Password:</label>';
+              if($row["password"]==""){
+                echo " Non impostata";
+              }else{
+                echo " Impostata";
+              }
+              echo '<br>
+
+              <label>Password temporanea:</label>';
+              if($row["temp_pwd"]==""){
+                echo " Non impostata";
+              }else{
+                echo " Impostata";
+              }
+              echo '<br>
+            </div>
+          </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer">
+            <div class="btn btn-primary" onclick="location.href=\'www.google.it\'">Cambia password</div>
+            <div class="btn btn-danger" onclick="location.href=\'/?p=usrinfo&delete=';
+            echo "$username";
+            echo '\'">Elimina</div>
+          </div>
+
+        </form>
+      </div>
+      <!-- /.box -->';
+
 
       // liberazione delle risorse occupate dal risultato
       $result->close();
