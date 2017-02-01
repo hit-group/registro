@@ -1,5 +1,5 @@
 
-<div class="box box-default color-palette-box">
+<div class="box box-primary">
   <div class="box-header with-border">
     <h3 class="box-title"><i class="fa fa-tag"></i> Stampa password</h3>
   </div>

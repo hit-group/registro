@@ -11,12 +11,12 @@
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body">
+                  <div class="box-body table-responsive no-padding">
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                       <tr>
@@ -33,6 +33,7 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+           $user= $row["username"];
            $id=$row["ID"];
            echo '<tr id="usr';
            echo "$id";
@@ -41,7 +42,9 @@
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
                  <td>". $row["nomeClasse"]. "</td>
-                 <td>". $row["username"] . "</td>
+
+                 <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
+
                  <td>". $row["email"] ."</td>
                  <td>". $row["ruolo"] ."</td>";
            echo "</tr>";
@@ -73,16 +76,17 @@
   }elseif($show=="stu"){
 
 
+    
 
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente'";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body">
+                  <div class="box-body table-responsive no-padding">
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                       <tr>
@@ -99,11 +103,14 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+			 $user= $row["username"];
            echo "<tr>";
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
                  <td>". $row["nomeClasse"]. "</td>
-                 <td>". $row["username"] . "</td>
+
+                 <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
+
                  <td>". $row["email"] ."</td>";
 
            echo "</tr>";
@@ -137,12 +144,12 @@
     $sql = "SELECT * FROM utenti WHERE ruolo='docente'";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body">
+                  <div class="box-body table-responsive no-padding">
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                       <tr>
@@ -159,11 +166,12 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+		   $user= $row["username"];
            echo "<tr>";
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
 
-                 <td>". $row["username"] . "</td>
+                 <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
 
            echo "</tr>";
@@ -195,12 +203,12 @@
     $sql = "SELECT * FROM utenti WHERE ruolo='amministratore'";
     $result = $connessione->query($sql);
 
-    echo '						<div class="box">
+    echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
                   </div>
                   <!-- /.box-header -->
-                  <div class="box-body">
+                  <div class="box-body table-responsive no-padding">
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                       <tr>
@@ -217,11 +225,12 @@
     if ($result->num_rows > 0) {
          // output data of each row
          while($row = $result->fetch_assoc()) {
+			 $user= $row["username"];
            echo "<tr>";
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
 
-                 <td>". $row["username"] . "</td>
+				 <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
                  <td>". $row["email"] ."</td>";
            echo "</tr>";
          }
@@ -253,3 +262,4 @@
   $connessione->close();
 
 ?>
+
