@@ -3,13 +3,7 @@
   Connessione al DBMS e selezione del database.
 */
 
-/*
-# blocco dei parametri di connessione
-$db_servername = "localhost";
-$db_username = "root";
-$db_password = "rebenciuc";
-$db_name = "registro_db";
-*/
+include_once($_SERVER['DOCUMENT_ROOT']."/include/session/db_credentials.php"); //Credenziali di accesso al db
 
 # stringa di connessione al DBMS
 // istanza dell'oggetto della classe MySQLi
