@@ -42,7 +42,9 @@
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
                  <td>". $row["nomeClasse"]. "</td>
+
                  <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
+
                  <td>". $row["email"] ."</td>
                  <td>". $row["ruolo"] ."</td>";
            echo "</tr>";
@@ -74,6 +76,7 @@
   }elseif($show=="stu"){
 
 
+    
 
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente'";
     $result = $connessione->query($sql);
@@ -105,7 +108,9 @@
            echo "<td>". $row["nome"]. "</td>
                  <td>". $row["cognome"]. "</td>
                  <td>". $row["nomeClasse"]. "</td>
+
                  <td><a href='/?p=usrinfo&user=$user'>". $user . "</a></td>
+
                  <td>". $row["email"] ."</td>";
 
            echo "</tr>";
