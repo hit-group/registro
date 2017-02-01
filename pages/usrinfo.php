@@ -89,7 +89,7 @@
 
           <div class="box-footer">
             <div class="btn btn-primary" onclick="location.href=\'www.google.it\'">Cambia password</div>
-            <div class="btn btn-danger" onclick="location.href=\'/?p=usrinfo&delete=';
+            <div class="btn btn-danger" onclick="location.href=\'/include/forms/userdel.php?user=';
             echo "$username";
             echo '\'">Elimina</div>
           </div>
