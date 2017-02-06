@@ -88,7 +88,9 @@
           <!-- /.box-body -->
 
           <div class="box-footer">
-            <div class="btn btn-primary" onclick="location.href=\'www.google.it\'">Cambia password</div>
+            <div class="btn btn-primary" onclick="location.href=\'/include/forms/pwdmod.php?user=';
+            echo "$username";
+            echo '\'">Cambia Password</div>
             <div class="btn btn-danger" onclick="location.href=\'/include/forms/userdel.php?user=';
             echo "$username";
             echo '\'">Elimina</div>
