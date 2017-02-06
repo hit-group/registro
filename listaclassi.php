@@ -7,11 +7,10 @@
 	require($_SERVER['DOCUMENT_ROOT']."/include/session/connessione.php"); //Connette al database
 
 
-
 	$result = $connessione->query("SELECT * FROM classi");
 
-	echo '<form mothod="post" action="eliminazione.php">';
-	echo '<select><option value="" disabled selected>Scegli una classe</option>';
+	echo '<form method="post" action="eliminazione.php">';
+	echo '<select name="classe"><option value="" disabled selected>Scegli una classe</option>';
 
 
 	if ($result->num_rows > 0) {
@@ -19,7 +18,7 @@
 			while($row = $result->fetch_assoc()) {
 
 				$annoB = intval($row["anno"]); //2017
-				$annoA = $annoB-1; 						//2016
+				$annoA = $annoB-1; 						 //2016
 				echo '<option value='.$row["id"].'>'.$row["nome"].' '.$annoA.'-'.$annoB.'</option>';
 			}
  } else {
