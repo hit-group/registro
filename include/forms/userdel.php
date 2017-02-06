@@ -19,15 +19,17 @@ if($username==$_SESSION["username"]){
   die("ERRORE: Username non valido");
 }
 
-
 // esecuzione della query per la selezione dei record
 // query argomento del metodo query()
 if (!$result = $connessione->query("DELETE FROM utenti WHERE username = '$username'")) {
   echo "Errore della query: " . $connessione->error . ".";
   exit();
 }else{
+  $_SESSION["msg_succ"]=true;
   //Eliminazione andata a buon fine
 }
+
+$_SESSION["del_succ"]=true;
 
 // chiusura della connessione
 $connessione->close();
