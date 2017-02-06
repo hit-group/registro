@@ -6,11 +6,22 @@
 
   //Riceve il parametro get che specifica l'username
 
-  if(!isset($_GET['user'])){
-    die("username non specificato");
-  }else{
-    $username = $_GET["user"];
-  }
+	if(!isset($_GET['user'])){
+	die("username non specificato");
+	}else{
+	$username = $_GET["user"];
+	}
+ 
+	if(isset($_SESSION["msg_succ"])&&$_SESSION["msg_succ"]==true){
+	$_SESSION["msg_succ"]=false;
+	
+	echo '<div id="infobox" class="alert alert-success alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<h4><i class="icon fa fa-check"></i> Fatto!</h4>
+			Password modificata correttamente. La password temporanea nuova è: ' .$_SESSION["session_password"].'
+		  </div>';
+}
+
 
   //Pulisce il paramerto 'user' per evitare SQL injections
   $username=mysqli_real_escape_string($connessione,$username);
