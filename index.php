@@ -168,6 +168,8 @@
 						include 'pages/stampa-password.php';
 					elseif ($pag=="usrinfo")
 						include 'pages/usrinfo.php';
+					elseif ($pag=="rmclass")
+						include 'pages/rmclass.php';
 				}
 
 			?>

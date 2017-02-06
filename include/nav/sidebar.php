@@ -40,7 +40,6 @@
           echo ('active');
         echo ('"><a href="/?p=addusr"><i class="fa fa-link"></i> <span>Inserimento utenti</span></a></li>');
 
-
         echo '
         <li class="treeview">
           <a href="#">
@@ -54,6 +53,20 @@
             <li class="'; if($show==stu)echo "active"; echo'"><a href="/?p=usrlist&show=stu"><i class="fa fa-circle-o"></i> Studenti</a></li>
             <li class="'; if($show==doc)echo "active"; echo'"><a href="/?p=usrlist&show=doc"><i class="fa fa-circle-o"></i> Docenti</a></li>
             <li class="'; if($show==adm)echo "active"; echo'"><a href="/?p=usrlist&show=adm"><i class="fa fa-circle-o"></i> Amministratori</a></li>
+          </ul>
+        </li>';
+
+
+        echo '
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Classi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class=""><a href="/?p=rmclass"><i class="fa fa-circle-o"></i> Elimina classi</a></li>
           </ul>
         </li>';
 

@@ -16,9 +16,9 @@
   	//inserting data order
   	// esecuzione della query per l'inserimento dei record
   	if (!$connessione->query("DELETE FROM classi where id=$classe")) {
-  	  echo "Errore della query: impossibile eliminare una classe contenente studenti! <br /> <br /> " . $connessione->error . ".";
+  	  header("Location: /?p=rmclass&result=fail");
   	}else{
-  	  echo "Eliminazione effettuata correttamente.";
+  	  header("Location: /?p=rmclass&result=ok");
   	}
 
 
