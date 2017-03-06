@@ -80,9 +80,9 @@
             <!-- Menu Toggle Button -->
             <a href="include/session/stop.php">
               <!-- The user image in the navbar-->
-              <!--<img src="img/user_logo.png" class="user-image" alt="User Image">						togliere il commendo per vedere l'immagine-->
+              <img src="" class="" alt="  Esci  ">						
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">   Esci   </span>
+              <span class="hidden-xs"></span>
             </a>
           </li>
         </ul>
