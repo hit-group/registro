@@ -5,15 +5,19 @@
 //dell'utente.
 
 function mailGen(){
-  //alert("Mailgen");
+  
+  
+  document.getElementById("exampleInputEmail1").value="";
 
   var in_nome=document.getElementById("inputnome").value;
   var in_cognome=document.getElementById("inputcognome").value;
-
+  var in_classe="";
   if(document.getElementById("roleselect").value=="Studente"){
-      var in_classe=document.getElementById("inputclasse").value;
+	  
+      in_classe=document.getElementById("inputclasse").value;
   }
-
+	
+  
   if(in_nome==""||in_cognome=="")
     return;
   var value="";
