@@ -39,9 +39,15 @@ if(isset($_GET["result"])){
   }
   </script>
 
+<script src="js/autosigla.js"></script>
 
   <form id="usrregform" role="form" action="/include/forms/addclass.php" method="post">
     <div class="box-body">
+
+      <div class="form-group">
+        <label for="inputnome">Nome</label>
+        <input name="nome" type="text" class="form-control" id="inputnome" placeholder="Nome" onkeyup="genera();" onchange="genera();" required>
+      </div>
 
       <div class="form-group">
         <label for="inputsigla">Sigla</label>
@@ -49,13 +55,8 @@ if(isset($_GET["result"])){
       </div>
 
       <div class="form-group">
-        <label for="inputnome">Nome</label>
-        <input name="nome" type="text" class="form-control" id="inputnome" placeholder="Nome" required>
-      </div>
-
-      <div class="form-group">
         <label for="inputanno">Anno</label>
-        <input name="anno" type="text" class="form-control" id="inputanno" placeholder="Anno" required>
+        <input name="anno" type="text" class="form-control" id="inputanno" placeholder="Anno" value="<?php echo date("Y") ?>" required>
       </div>
 
     </div>
