@@ -78,43 +78,13 @@
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="include/session/stop.php">
               <!-- The user image in the navbar-->
-              <img src="img/user_logo.png" class="user-image" alt="User Image">
+              <img src="" class="" alt="  Esci  ">						
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs"><?php echo $_SESSION["nomecompleto"]; ?></span>
+              <span class="hidden-xs"></span>
             </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <img src="img/user_logo.png" class="img-circle" alt="User Image">
-
-                <p>
-                  <?php
-										if($_SESSION["ruolo"]=="studente"){
-												echo $_SESSION["nomecompleto"];
-												echo " - ";
-												echo $_SESSION["classe"];
-										}else{
-												echo $_SESSION["nomecompleto"];
-										}
-										?>
-                  <small><?php echo $_SESSION["scuola"]; ?></small>
-
-                </p>
-              </li>
-
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-right">
-                  <a href="include/session/stop.php" class="btn btn-default btn-flat">Esci</a>
-                </div>
-              </li>
-
-            </ul>
           </li>
-
-
         </ul>
       </div>
     </nav>

@@ -35,10 +35,12 @@
 		die("Ruolo non fornito");
 	}
 
-  if(isset($_POST["classe"])){
-    echo "Classe: ".$_POST["classe"]."<br>";
-  }else{
-		die("Classe non fornita");
+	if(($_POST["ruolo"])=="Studente"){
+	  if(isset($_POST["classe"])){
+		echo "Classe: ".$_POST["classe"]."<br>";
+	  }else{
+			die("Classe non fornita");
+		}
 	}
 
   if(isset($_POST["email"])){

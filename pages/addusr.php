@@ -28,7 +28,7 @@
     //mailGen();
     if(document.getElementById("roleselect").value=="Studente"){
       //Mostra il selettore della classe
-      document.getElementById("divnascosto").outerHTML='<div id="divnascosto" class="form-group"><label>Classe</label><select name="classe" form="usrregform" class="form-control select2" style="width: 100%;"><option>3 AFM S</option><option>4 AFM S</option><option>5 AFM S</option><option>3 CAT S</option><option>4 CAT S</option><option>5 CAT S</option></select><p class="help-block">Necessaria solo se l utente registrato è uno studente</p></div>';
+      document.getElementById("divnascosto").outerHTML='<div id="divnascosto" class="form-group"><label>Classe</label><select id="inputclasse" name="classe" form="usrregform" class="form-control select2" style="width: 100%;" onchange="mailGen();"><option>3 AFM S</option><option>4 AFM S</option><option>5 AFM S</option><option>3 CAT S</option><option>4 CAT S</option><option>5 CAT S</option></select><p class="help-block">Necessaria solo se l utente registrato è uno studente</p></div>';
     }else{
       //Nasconde il selettore della classe
       document.getElementById("divnascosto").outerHTML='<div id="divnascosto"><div>';
@@ -42,7 +42,7 @@
     <div class="box-body">
       <div class="form-group">
         <label>Ruolo</label>
-        <select id="roleselect"  name="ruolo" form="usrregform" class="form-control select2" style="width: 100%;" onchange="fnSelect();mainGen();">
+        <select id="roleselect"  name="ruolo" form="usrregform" class="form-control select2" style="width: 100%;" onchange="fnSelect();mailGen();">
           <option>Studente</option>
           <option>Docente</option>
           <option>Amministratore</option>
@@ -61,7 +61,7 @@
 
       <div id="divnascosto" class="form-group">
         <label>Classe</label>
-        <select id="inputclasse" name="classe" form="usrregform" class="form-control select2" style="width: 100%;">
+        <select id="inputclasse" name="classe" form="usrregform" class="form-control select2" style="width: 100%;" onchange="mailGen();">
           <option>3 AFM S</option>
           <option>4 AFM S</option>
           <option>5 AFM S</option>
