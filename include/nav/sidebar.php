@@ -65,9 +65,15 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+
           <ul class="treeview-menu">
-            <li class=""><a href="/?p=rmclass"><i class="fa fa-circle-o"></i> Elimina classi</a></li>
+            <li class=""><a href="/?p=adclass"><i class="fa fa-circle-o"></i> Aggiungi classi</a></li>
           </ul>
+
+          <ul class="treeview-menu">
+          <li class=""><a href="/?p=rmclass"><i class="fa fa-circle-o"></i> Elimina classi</a></li>
+          </ul>
+
         </li>';
 
 

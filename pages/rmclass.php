@@ -1,7 +1,5 @@
 <?php
 
-	session_start();
-
 	require($_SERVER['DOCUMENT_ROOT']."/include/session/onlyadmin.php"); //Consente l'accesso solo ai docenti
 	require($_SERVER['DOCUMENT_ROOT']."/include/session/db_credentials.php"); //Consente l'accesso solo all'amministratore
 	require($_SERVER['DOCUMENT_ROOT']."/include/session/connessione.php"); //Connette al database

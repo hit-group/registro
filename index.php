@@ -170,6 +170,8 @@
 						include 'pages/usrinfo.php';
 					elseif ($pag=="rmclass")
 						include 'pages/rmclass.php';
+						elseif ($pag=="adclass")
+							include 'pages/adclass.php';
 				}
 
 			?>
