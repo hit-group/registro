@@ -48,6 +48,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+
   <link rel="icon" href="./img/favicon.ico" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -259,6 +260,8 @@
 <!-- FastClick -->
 <script src="plugins/fastclick/fastclick.js"></script>
 
+<!-- Script per mostrate tutti gli elementi in una datatable -->
+<script src="js/datatables-showall.js"></script>
 
 <script>
 	//Script per le tabelle complesse

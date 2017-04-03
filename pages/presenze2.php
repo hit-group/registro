@@ -25,18 +25,22 @@
 
 
 
-
 	    echo '<div class="box box-primary">
+								<form id="formpresenze" action="/include/forms/rxpresenze.php" method="post">
+									
+
 	                  <div class="box-header">
 	                    <h3 class="box-title">Classe ';
 											echo $nomecl;
-											echo '</h3>
-	                  </div>
+											echo '</h3>';
+											echo '</div>
 	                  <!-- /.box-header -->
+
 	                  <div class="box-body table-responsive no-padding">
-	                    <table id="example1" class="table table-bordered table-striped">
+	                    <table id="example1us" class="table table-bordered table-striped">
 	                      <thead>
 	                      <tr>
+													<th>#</th>
 	                        <th>Nome</th>
 	                        <th>Cognome</th>
 													<th>Presente</th>
@@ -47,12 +51,15 @@
 	                      ';
 	    if ($result->num_rows > 0) {
 	         // output data of each row
+					 $i = -1;
 	         while($row = $result->fetch_assoc()) {
+						 $i = $i + 1;
 				 $user= $row["username"];
 	           echo "<tr>";
-	           echo "<td>". $row["nome"]. "</td>
+						 echo "<td>". ($i + 1) . "</td>
+	           				<td>". $row["nome"]. "</td>
 	                 <td>". $row["cognome"]. "</td>
-									 <td><select>
+									 <td><select form='formpresenze' name='stud" . $i ; echo "'>
   <option style='color: green;' value='presente' selected='selected'>Presente</option>
   <option style='color: red;' value='assente'>Assente</option></select></td>
 									 ";
@@ -66,6 +73,7 @@
 	    echo '</tbody>
 	        <tfoot>
 	        <tr>
+						<th>#</th>
 	          <th>Nome</th>
 	          <th>Cognome</th>
 						<th>Presente</th>
@@ -76,11 +84,16 @@
 	      </table>
 	    </div>
 	    <!-- /.box-body -->
+
+			<div class="box-footer">
+	      <button type="submit" class="btn btn-primary">Salva</button>
 	    </div>
+			</form>
+
+	    </div>
+
 	    <!-- /.box -->
 	    ';
 
 $connessione->close();
-
-
 ?>
