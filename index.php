@@ -81,7 +81,7 @@
             <!-- Menu Toggle Button -->
             <a href="include/session/stop.php">
               <!-- The user image in the navbar-->
-              <img src="" class="" alt="  Esci  ">
+              <img src="/img/PowerIcon.png" class="" alt="">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"></span>
             </a>
