@@ -8,21 +8,21 @@
   if($show=="all"){
     // Create connection
 
-    
+
 
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id";
     $result = $connessione->query($sql);
-    
+
       if(isset($_SESSION["del_succ"])&&$_SESSION["del_succ"]==true){
 	$_SESSION["del_succ"]=false;
-	
+
 	echo '<div id="infobox" class="alert alert-success alert-dismissible">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<h4><i class="icon fa fa-check"></i> Fatto!</h4>
 			Utente eliminato correttamente.</div>';
 	}
 
-  
+
     echo '<div class="box box-primary">
                   <div class="box-header">
                     <h3 class="box-title">Utenti registrati</h3>
@@ -85,14 +85,14 @@
   }elseif($show=="stu"){
 
 
-    
+
 
     $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente'";
     $result = $connessione->query($sql);
-    
+
           if(isset($_SESSION["del_succ"])&&$_SESSION["del_succ"]==true){
 	$_SESSION["del_succ"]=false;
-	
+
 	echo '<div id="infobox" class="alert alert-success alert-dismissible">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 			<h4><i class="icon fa fa-check"></i> Fatto!</h4>
@@ -278,4 +278,3 @@
   $connessione->close();
 
 ?>
-

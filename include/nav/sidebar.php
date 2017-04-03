@@ -31,7 +31,10 @@
       if($_SESSION["ruolo"]=="studente"){
 
       }elseif($_SESSION["ruolo"]=="docente") {
-
+        echo ('<li class="');
+        if($pag=="presenze")
+          echo ('active');
+        echo ('"><a href="/?p=presenze"><i class="fa fa-link"></i> <span>Presenze</span></a></li>');
       }elseif($_SESSION["ruolo"]=="amministratore") {
 
         //Voce del menu per aggiungere (registrare) nuovi utenti (studenti o docenti)

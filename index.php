@@ -80,7 +80,7 @@
             <!-- Menu Toggle Button -->
             <a href="include/session/stop.php">
               <!-- The user image in the navbar-->
-              <img src="" class="" alt="  Esci  ">						
+              <img src="" class="" alt="  Esci  ">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"></span>
             </a>
@@ -126,7 +126,10 @@
 				if($_SESSION["ruolo"]=="studente"){
 
 				}elseif ($_SESSION["ruolo"]=="docente") {
-
+					if($pag=="presenze")
+						include 'pages/presenze.php';
+					if($pag=="presenze2")
+						include 'pages/presenze2.php';
 				}elseif ($_SESSION["ruolo"]=="amministratore") {
 					if($pag=="usrlist")
 						include 'pages/usrlist.php';
