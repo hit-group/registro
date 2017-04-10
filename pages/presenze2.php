@@ -20,19 +20,19 @@
 
 	require($_SERVER['DOCUMENT_ROOT']."/include/session/connessione.php"); //Connette al database
 
-	  $sql = "SELECT u.nome,u.cognome,u.classe,c.id,c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente' AND u.classe = $classe";
+	  $sql = "SELECT u.id AS idUtente, u.nome, u.cognome, u.classe, c.id, c.nome as nomeClasse,u.username,u.email,u.ruolo FROM utenti as u, classi as c WHERE u.classe = c.id AND ruolo='studente' AND u.classe = $classe";
 	  $result = $connessione->query($sql);
 
 
 
 	    echo '<div class="box box-primary">
 								<form id="formpresenze" action="/include/forms/rxpresenze.php" method="post">
-									
+
 
 	                  <div class="box-header">
-	                    <h3 class="box-title">Classe ';
+	                    <h3 class="box-title">Classe: ';
 											echo $nomecl;
-											echo '</h3>';
+											echo '<br>Data odierna: ' . date('m/d/Y') . '</h3>';
 											echo '</div>
 	                  <!-- /.box-header -->
 
@@ -55,11 +55,12 @@
 	         while($row = $result->fetch_assoc()) {
 						 $i = $i + 1;
 				 $user= $row["username"];
+				 $userID = $row["idUtente"];
 	           echo "<tr>";
 						 echo "<td>". ($i + 1) . "</td>
 	           				<td>". $row["nome"]. "</td>
 	                 <td>". $row["cognome"]. "</td>
-									 <td><select form='formpresenze' name='stud" . $i ; echo "'>
+									 <td><select form='formpresenze' name='stud" . $userID ; echo "'>
   <option style='color: green;' value='presente' selected='selected'>Presente</option>
   <option style='color: red;' value='assente'>Assente</option></select></td>
 									 ";

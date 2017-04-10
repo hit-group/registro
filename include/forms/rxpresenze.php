@@ -5,26 +5,25 @@
   //
   // require($_SERVER['DOCUMENT_ROOT']."/include/session/onlydoc.php"); //Consente l'accesso solo ai docenti
   // require($_SERVER['DOCUMENT_ROOT']."/include/session/db_credentials.php"); //Consente l'accesso solo all'amministratore
-  // require($_SERVER['DOCUMENT_ROOT']."/include/session/connessione.php"); //Connette al database
-
+  require($_SERVER['DOCUMENT_ROOT']."/include/session/connessione.php"); //Connette al database
 
 
 
   echo "<table>";
+  foreach (array_slice($_POST, 1) as $key => $value) {
+      $sql = "INSERT INTO presenze (studente, classe, giorno, ora_entrata, ora_uscita)";
 
-
-  foreach ($_POST as $key => $value) {
       echo "<tr>";
       echo "<td>";
-      echo $key;
+      echo $key = str_replace("stud", "", $key);
       echo "</td>";
       echo "<td>";
       echo $value;
       echo "</td>";
       echo "</tr>";
   }
-
-
   echo "</table>";
+
+
 
 ?>
